@@ -76,6 +76,19 @@ public class MainFrame extends JFrame
         saveToGraphicsMenuItem = fileMenu.add(saveToGraphicAction);
         saveToGraphicsMenuItem.setEnabled(false);
 
+        Action searchValueAction = new AbstractAction("Найти значение многочлена") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String value = JOptionPane.showInputDialog(MainFrame.this, "Введите значение для поиска", "Поиск значения", JOptionPane.QUESTION_MESSAGE);
+                renderer.setNeedle(value);
+                getContentPane().repaint();
+            }
+        };
+        searchValueMenuItem = tableMenu.add(searchValueAction);
+        searchValueMenuItem.setEnabled(false);
+
+        
+
     }
 
 
