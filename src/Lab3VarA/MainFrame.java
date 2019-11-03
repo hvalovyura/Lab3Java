@@ -161,8 +161,20 @@ public class MainFrame extends JFrame
             }
         });
 
+        Box hboxButtons = Box.createHorizontalBox();
+        hboxButtons.setBorder(BorderFactory.createBevelBorder(1));
+        hboxButtons.add(Box.createHorizontalGlue());
+        hboxButtons.add(buttonCalc);
+        hboxButtons.add(Box.createHorizontalStrut(30));
+        hboxButtons.add(buttonReset);
+        hboxButtons.add(Box.createHorizontalGlue());
+        hboxButtons.setPreferredSize(new Dimension(new Double(hboxButtons.getMaximumSize().getWidth()).intValue(), new Double(hboxButtons.getMaximumSize().getHeight()).intValue()*2));
+        getContentPane().add(hboxButtons, BorderLayout.SOUTH);
+        hboxResult = Box.createHorizontalBox();
+        hboxResult.add(new JPanel());
+        getContentPane().add(hboxResult, BorderLayout.CENTER);
     }
 
-
+    
 
 }
