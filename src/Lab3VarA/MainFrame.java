@@ -3,6 +3,7 @@ package Lab3VarA;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 
 public class MainFrame extends JFrame
@@ -117,7 +118,48 @@ public class MainFrame extends JFrame
         hboxRange.setPreferredSize(new Dimension(new Double(hboxRange.getMaximumSize().getWidth()).intValue(), new Double(hboxRange.getMaximumSize().getHeight()).intValue()*2));
         getContentPane().add(hboxRange, BorderLayout.NORTH);
 
-        
+        JButton buttonCalc = new JButton("Вычислить");
+        buttonCalc.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try
+                {
+                    Double from = Double.parseDouble(textFieldFrom.getText());
+                    Double to = Double.parseDouble(textFieldTo.getText());
+                    Double step = Double.parseDouble(textFieldStep.getText());
+                    data = new GornerTableModel(from, to, step, MainFrame.this.coefficients);
+                    JTable table = new JTable(data);
+                    table.setDefaultRenderer(Double.class, renderer);
+                    table.setRowHeight(30);
+                    hboxResult.removeAll();
+                    hboxResult.add(new JScrollPane(table));
+                    getContentPane().validate();
+                    saveToTextMenuItem.setEnabled(true);
+                    saveToGraphicsMenuItem.setEnabled(true);
+                    searchValueMenuItem.setEnabled(true);
+                }
+                catch(NumberFormatException ex)
+                {
+                    JOptionPane.showMessageDialog(MainFrame.this, "Ошибка в формате записи числа с плавающей точкой", "Ошибочный формат числа", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        });
+
+        JButton buttonReset = new JButton("Очистить поля");
+        buttonReset.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                textFieldFrom.setText("0.0");
+                textFieldTo.setText("1.0");
+                textFieldStep.setText("0.1");
+                hboxResult.removeAll();
+                hboxResult.add(new JPanel());
+                saveToTextMenuItem.setEnabled(false);
+                saveToGraphicsMenuItem.setEnabled(false);
+                searchValueMenuItem.setEnabled(false);
+                getContentPane().validate();
+            }
+        });
 
     }
 
