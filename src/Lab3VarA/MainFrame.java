@@ -19,6 +19,7 @@ public class MainFrame extends JFrame
     private JMenuItem saveToTextMenuItem;
     private JMenuItem saveToGraphicsMenuItem;
     private JMenuItem searchValueMenuItem;
+    private JMenuItem showAuthorInfoMenuItem;
 
     private JTextField textFieldFrom;
     private JTextField textFieldTo;
@@ -43,6 +44,17 @@ public class MainFrame extends JFrame
         menuBar.add(fileMenu);
         JMenu tableMenu = new JMenu("Таблица");
         menuBar.add(tableMenu);
+        JMenu aboutMenu = new JMenu("Справка");
+        menuBar.add(aboutMenu);
+
+        Action aboutAuthorAction = new AbstractAction("О программе") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(MainFrame.this, "Хвалов Юрий,\n2 курс\n8 группа", "О программе", JOptionPane.INFORMATION_MESSAGE);
+            }
+        };
+        showAuthorInfoMenuItem = aboutMenu.add(aboutAuthorAction);
+
 
         Action saveToTextAction = new AbstractAction("Сохранить в текстовый файл") {
             @Override
