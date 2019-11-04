@@ -10,7 +10,7 @@ import java.io.*;
 public class MainFrame extends JFrame
 {
     static private final int WIDTH = 700;
-    static private final int HEIGHT = 700;
+    static private final int HEIGHT = 500;
 
     private Double[] coefficients;
 
@@ -116,7 +116,7 @@ public class MainFrame extends JFrame
         hboxRange.add(Box.createHorizontalStrut(10));
         hboxRange.add(textFieldStep);
         hboxRange.add(Box.createHorizontalGlue());
-        hboxRange.setPreferredSize(new Dimension(new Double(hboxRange.getMaximumSize().getWidth()).intValue(), new Double(hboxRange.getMaximumSize().getHeight()).intValue()*2));
+        hboxRange.setPreferredSize(new Dimension(new Double(hboxRange.getMaximumSize().getWidth()).intValue(), new Double(hboxRange.getMinimumSize().getHeight()).intValue()*2));
         getContentPane().add(hboxRange, BorderLayout.NORTH);
 
         JButton buttonCalc = new JButton("Вычислить");
@@ -169,8 +169,9 @@ public class MainFrame extends JFrame
         hboxButtons.add(Box.createHorizontalStrut(30));
         hboxButtons.add(buttonReset);
         hboxButtons.add(Box.createHorizontalGlue());
-        hboxButtons.setPreferredSize(new Dimension(new Double(hboxButtons.getMaximumSize().getWidth()).intValue(), new Double(hboxButtons.getMaximumSize().getHeight()).intValue()*2));
+        hboxButtons.setPreferredSize(new Dimension(new Double(hboxButtons.getMaximumSize().getWidth()).intValue(), new Double(hboxButtons.getMinimumSize().getHeight()).intValue()*2));
         getContentPane().add(hboxButtons, BorderLayout.SOUTH);
+
         hboxResult = Box.createHorizontalBox();
         hboxResult.add(new JPanel());
         getContentPane().add(hboxResult, BorderLayout.CENTER);
