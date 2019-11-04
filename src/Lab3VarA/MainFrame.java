@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
+import java.io.*;
 
 public class MainFrame extends JFrame
 {
@@ -173,6 +173,48 @@ public class MainFrame extends JFrame
         hboxResult = Box.createHorizontalBox();
         hboxResult.add(new JPanel());
         getContentPane().add(hboxResult, BorderLayout.CENTER);
+    }
+
+    protected void saveToTextFile(File selectedFile)
+    {
+        try
+        {
+            PrintStream out = new PrintStream(selectedFile);
+            out.println("Результаты табулирования многочлена по схеме Горнера");
+            out.print("Многочлен: ");
+            for(int i = 0; i < coefficients.length; i++)
+            {
+                out.print(coefficients[i] + "*X^" + (coefficients.length - i - 1));
+                if(i != coefficients.length - 1)
+                {
+                    out.print(" + ");
+                }
+            }
+            out.println("");
+            out.println("Интервал от " + data.getFrom() + " до " + data.getTo() + " с шагом " + data.getStep());
+            out.println("================================================");
+            for(int i = 0; i < data.getRowCount(); i++)
+            {
+                out.println("Значение в точке " + data.getValueAt(i, 0) + " равно " + data.getValueAt(i, 1));
+            }
+            out.close();
+        }
+        catch(FileNotFoundException ex){}
+    }
+
+    protected void saveToGraphicsFile(File selectedFile)
+    {
+        try
+        {
+            DataOutputStream out = new DataOutputStream(new FileOutputStream(selectedFile));
+            for(int i = 0; i < data.getRowCount(); i++)
+            {
+                out.writeDouble((Double)data.getValueAt(i, 0));
+                out.writeDouble((Double)data.getValueAt(i, 1));
+            }
+            out.close();
+        }
+        catch(Exception ex){}
     }
 
     
