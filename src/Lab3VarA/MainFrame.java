@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 
+@SuppressWarnings("serial")
 public class MainFrame extends JFrame
 {
     static private final int WIDTH = 700;

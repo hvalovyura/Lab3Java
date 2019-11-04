@@ -16,13 +16,13 @@ public class GornerTableCellRenderer implements TableCellRenderer
 
     public GornerTableCellRenderer()
     {
-        panel.add(label);
-        panel.setLayout(new FlowLayout(FlowLayout.LEFT));
         formatter.setMaximumFractionDigits(5);
         formatter.setGroupingUsed(false);
         DecimalFormatSymbols dottedDouble = formatter.getDecimalFormatSymbols();
         dottedDouble.setDecimalSeparator('.');
         formatter.setDecimalFormatSymbols(dottedDouble);
+        panel.add(label);
+        panel.setLayout(new FlowLayout(FlowLayout.LEFT));
     }
 
     public void setNeedle(String needle) {
@@ -33,7 +33,7 @@ public class GornerTableCellRenderer implements TableCellRenderer
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         String formattedDouble = formatter.format(value);
         label.setText(formattedDouble);
-        if (column == 1 && needle != null && needle.equals(value))
+        if (column == 1 && needle != null && needle.equals(formattedDouble))
         {
             panel.setBackground(Color.RED);
         }

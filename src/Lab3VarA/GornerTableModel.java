@@ -2,6 +2,7 @@ package Lab3VarA;
 
 import javax.swing.table.AbstractTableModel;
 
+@SuppressWarnings("serial")
 public class GornerTableModel extends AbstractTableModel
 {
     private Double[] coefficients;
